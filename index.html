@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4ОТБр</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_oil.css">
+    <link rel="stylesheet" href="styles_fuel.css">
+    <link rel="stylesheet" href="styles_adblue.css">
+    <style>
+        body {
+            background-image: url('military.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #FFF;
+        }
+        .container {
+            backdrop-filter: blur(10px) brightness(0.8);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+        .logo-container, .button-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            flex-direction: row;
+        }
+        .custom-button {
+            background: linear-gradient(135deg, #6b8e23, #556b2f);
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .custom-button:hover {
+            background: linear-gradient(135deg, #556b2f, #6b8e23);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+        }
+        .btn {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #fff;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        footer a {
+            color: #FFEB3B;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: #FFD700;
+        }
+        .blinking-text {
+            animation: blink 1s infinite;
+        }
+        .fraction {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.2em;
+            margin: 10px;
+        }
+        .fraction .top {
+            border-bottom: 2px solid #fff;
+            padding: 0 5px;
+        }
+        .fraction .bottom {
+            padding: 0 5px;
+        }
+        .highlighted-result {
+            color: #ffeb3b;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            }
+            .custom-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .btn {
+                padding: 10px;
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Логотип -->
+        <div class="logo-container">
+            <a href="https://www.facebook.com/4tankova" target="_blank">
+                <img src="logo4.png" alt="Логотип" class="logo">
+            </a>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="button-group">
+            <button class="custom-button" onclick="showSection('fuel-section')">Паливо</button>
+            <button class="custom-button" onclick="showSection('oil-section')">Мастило</button>
+            <button class="custom-button" onclick="showSection('adblue-section')">Adblue</button>
+        </div>
+
+        <!-- Секції -->
+        <div id="fuel-section" class="section" style="display: none;">
+            <h1>Розрахунок витрати палива</h1>
+            <form id="fuel-form">
+                <table>
+                    <tr>
+                        <td><label for="a">A (нормативна витрата палива, л/100 км):</label></td>
+                        <td><input type="number" id="a" placeholder="Введіть значення A"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="b">B (км з вантажем):</label></td>
+                        <td><input type="number" id="b" placeholder="Введіть значення B"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="v">V (км без вантажу):</label></td>
+                        <td><input type="number" id="v" placeholder="Введіть значення V"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="g">G (відпрацьовано мотогодин):</label></td>
+                        <td><input type="number" id="g" placeholder="Введіть значення G"></td>
+                    </tr>
+                </table>
+                <button type="button" class="btn" onclick="calculateFuel()">Розрахувати</button>
+            </form>
+
+            <div id="result" class="result" style="display: none;"></div>
+            <div id="formula" class="formula" style="display: none;"></div>
+        </div>
+
+        <div id="oil-section" class="section" style="display: none;">
+            <h1 class="blinking-text">На стадії розробки</h1>
+        </div>
+
+        <div id="adblue-section" class="section" style="display: none;">
+            <h1 class="blinking-text">На стадії розробки</h1>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <a href="https://www.facebook.com/profile.php?id=100001232615511" target="_blank">
+                Created by ODIN
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // Функція для показу відповідної секції
+        function showSection(sectionId) {
+            $('.section').hide();
+            $('#' + sectionId).show();
+        }
+
+        // Функція для розрахунку витрати палива
+        function calculateFuel() {
+            const a = parseFloat(document.getElementById("a").value) || 0;
+            const b = parseFloat(document.getElementById("b").value) || 0;
+            const v = parseFloat(document.getElementById("v").value) || 0;
+            const g = parseFloat(document.getElementById("g").value) || 0;
+
+            // Округлення 0.5 і більше до 1, менше до 0
+            function roundHalfUp(value) {
+                return Math.round(value);
+            }
+
+            const fuelWithLoad = roundHalfUp((a / 100) * b * 1.2);
+            const fuelWithoutLoad = roundHalfUp((a / 100) * v);
+            const fuelByHours = roundHalfUp(g * 25 * (a / 100));
+            const totalFuel = fuelWithLoad + fuelWithoutLoad + fuelByHours;
+
+            const formulaHTML = `
+                <div class="fraction">
+                    <span class="top">${b} × ${a} × 1.2</span>
+                    <span class="bottom">100</span>
+                </div> = ${fuelWithLoad} л
+                <div class="fraction">
+                    <span class="top">${v} × ${a}</span>
+                    <span class="bottom">100</span>
+                </div> = ${fuelWithoutLoad} л
+                <div class="fraction">
+                    <span class="top">${g} × 25 × ${a}</span>
+                    <span class="bottom">100</span>
+                </div> = ${fuelByHours} л
+                <div><strong>Всього:</strong> ${fuelWithLoad} л + ${fuelWithoutLoad} л + ${fuelByHours} л = <strong>${totalFuel}</strong> л</div>
+            `;
+
+            const resultDiv = document.getElementById("result");
+            const formulaDiv = document.getElementById("formula");
+
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = `Обсяг списаного палива: <span class="highlighted-result">${totalFuel}</span> л.`;
+
+            formulaDiv.style.display = "block";
+            formulaDiv.innerHTML = formulaHTML;
+        }
+    </script>
+</body>
+</html>
