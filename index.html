@@ -3,243 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4ОТБр</title>
+    <title>Розрахунок витрати мастила</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles_oil.css">
-    <link rel="stylesheet" href="styles_fuel.css">
-    <link rel="stylesheet" href="styles_adblue.css">
     <style>
         body {
-            background-image: url('military.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            color: #FFF;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
         }
         .container {
-            backdrop-filter: blur(10px) brightness(0.8);
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-            max-width: 1000px;
+            max-width: 600px;
             margin: auto;
-            text-align: center;
-        }
-        .logo-container, .button-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .button-group {
-            flex-direction: row;
-        }
-        .custom-button {
-            background: linear-gradient(135deg, #6b8e23, #556b2f);
-            border: none;
-            color: #fff;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 15px 30px;
-            margin: 10px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-        }
-        .custom-button:hover {
-            background: linear-gradient(135deg, #556b2f, #6b8e23);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
-        }
-        .btn {
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            color: #fff;
-            padding: 15px;
+            padding: 20px;
+            background: #f9f9f9;
             border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            transition: transform 0.3s ease;
-            width: 100%;
-        }
-        .btn:hover {
-            transform: scale(1.1);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #fff;
-        }
-        th, td {
-            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        footer a {
-            color: #FFEB3B;
-            text-decoration: none;
+        .logo {
+            display: block;
+            max-width: 150px;
+            margin: 0 auto 10px;
+        }
+        .sub-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        label {
             font-weight: bold;
         }
-        footer a:hover {
-            text-decoration: underline;
-            color: #FFD700;
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #000;
         }
-        .blinking-text {
-            animation: blink 1s infinite;
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
         }
-        .fraction {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 1.2em;
-            margin: 10px;
+        button:hover {
+            background-color: #0056b3;
         }
-        .fraction .top {
-            border-bottom: 2px solid #fff;
-            padding: 0 5px;
-        }
-        .fraction .bottom {
-            padding: 0 5px;
-        }
-        .highlighted-result {
-            color: #ffeb3b;
-            font-size: 1.5em;
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            color: #155724;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            }
-            .custom-button {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-            .btn {
-                padding: 10px;
-            }
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- Логотип -->
-        <div class="logo-container">
-            <a href="https://www.facebook.com/4tankova" target="_blank">
-                <img src="logo4.png" alt="Логотип" class="logo">
-            </a>
+        <a href="https://www.facebook.com/4tankova" target="_blank">
+            <img src="logo.png" alt="Логотип" class="logo">
+        </a>
+        <div class="sub-title">
+            <a href="https://www.facebook.com/4tankova" target="_blank">4 ОТБр</a>
         </div>
+        <h1>Розрахунок витрати мастила</h1>
+        <form id="oil-form">
+            <label for="model">Модель автомобіля:</label>
+            <select id="model" onchange="updateNorm()">
+                <option value="">Оберіть модель</option>
+                <option value="MERCEDES BENZ SPRINTER 416CDI">MERCEDES BENZ SPRINTER 416CDI</option>
+                <option value="КРАЗ 260">КРАЗ 260</option>
+                <option value="MERCEDES BENZ  SPRINTER 316 CDI">MERCEDES BENZ  SPRINTER 316 CDI</option>
+                <option value="MAN TGL 12.220">MAN TGL 12.220</option>
+                <option value="MERCEDES BENZ VITO 111">MERCEDES BENZ VITO 111</option>
+                <option value="VOLKSWAGEN TRANSPORTER">VOLKSWAGEN TRANSPORTER</option>
+                <option value="ГАЗ 331049-КТП Валдай">ГАЗ 331049-КТП Валдай</option>
+                <option value="БАЗ Т713.12 ТАТА">БАЗ Т713.12 ТАТА</option>
+                <option value="RENAULT PREMIUM 420">RENAULT PREMIUM 420</option>
+                <option value="DAF XF 95.380">DAF XF 95.380</option>
+                <option value="MAN TGА">MAN TGА</option>
+                <option value="«Локер» LC0712 на базі автомобіля Mitsubishi L200">«Локер» LC0712 на базі автомобіля Mitsubishi L200</option>
+                <option value="ТАТА 613 5675">ТАТА 613 5675</option>
+                <option value="HYUNDAI Terracan">HYUNDAI Terracan</option>
+                <option value="Mitsubishi PICK-UP L200">Mitsubishi PICK-UP L200</option>
+                <option value="ЗИЛ 131 МРС-АТ">ЗИЛ 131 МРС-АТ</option>
+                <option value="УРАЛ 4320 КЕТ-Л">УРАЛ 4320 КЕТ-Л</option>
+                <option value="NISAN Navaro">NISAN Navaro</option>
+                <option value="NISAN X-TRAIL">NISAN X-TRAIL</option>
+                <option value="ГАЗ 5312">ГАЗ 5312</option>
+                <option value="УАЗ  3909">УАЗ  3909</option>
+                <option value="ЗІЛ 131 ТРМ-80Д">ЗІЛ 131 ТРМ-80Д</option>
+                <option value="MAN HX 44.685">MAN HX 44.685</option>
+                <option value="Volkswagen Caravelle">Volkswagen Caravelle</option>
+                <option value="МАЗ 543 КШТ-80">МАЗ 543 КШТ-80</option>
+                <option value="MAN TGX 33.480 6х4 BL SA">MAN TGX 33.480 6х4 BL SA</option>
+                <option value="КАМАЗ 5320">КАМАЗ 5320</option>
+                <option value="Mitsubishi L200">Mitsubishi L200</option>
+                <option value="FAUN HZ4045/45">FAUN HZ4045/45</option>
+            </select>
 
-        <!-- Кнопки -->
-        <div class="button-group">
-            <button class="custom-button" onclick="showSection('fuel-section')">Паливо</button>
-            <button class="custom-button" onclick="showSection('oil-section')">Мастило</button>
-            <button class="custom-button" onclick="showSection('adblue-section')">Adblue</button>
+            <label for="norm">Нормативна витрата мастила (л/1000 км):</label>
+            <input type="number" id="norm" placeholder="Нормативна витрата" readonly>
+
+            <label for="distance">Пробіг (км):</label>
+            <input type="number" id="distance" placeholder="Введіть значення пробігу">
+
+            <button type="button" onclick="calculateOil()">Розрахувати</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;"></div>
+        <div class="footer">
+            <a href="https://www.facebook.com/profile.php?id=100001232615511" target="_blank">created by ODIN</a>
         </div>
-
-        <!-- Секції -->
-        <div id="fuel-section" class="section" style="display: none;">
-            <h1>Розрахунок витрати палива</h1>
-            <form id="fuel-form">
-                <table>
-                    <tr>
-                        <td><label for="a">A (нормативна витрата палива, л/100 км):</label></td>
-                        <td><input type="number" id="a" placeholder="Введіть значення A"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="b">B (км з вантажем):</label></td>
-                        <td><input type="number" id="b" placeholder="Введіть значення B"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="v">V (км без вантажу):</label></td>
-                        <td><input type="number" id="v" placeholder="Введіть значення V"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="g">G (відпрацьовано мотогодин):</label></td>
-                        <td><input type="number" id="g" placeholder="Введіть значення G"></td>
-                    </tr>
-                </table>
-                <button type="button" class="btn" onclick="calculateFuel()">Розрахувати</button>
-            </form>
-
-            <div id="result" class="result" style="display: none;"></div>
-            <div id="formula" class="formula" style="display: none;"></div>
-        </div>
-
-        <div id="oil-section" class="section" style="display: none;">
-            <h1 class="blinking-text">На стадії розробки</h1>
-        </div>
-
-        <div id="adblue-section" class="section" style="display: none;">
-            <h1 class="blinking-text">На стадії розробки</h1>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <a href="https://www.facebook.com/profile.php?id=100001232615511" target="_blank">
-                Created by ODIN
-            </a>
-        </footer>
     </div>
 
     <script>
-        // Функція для показу відповідної секції
-        function showSection(sectionId) {
-            $('.section').hide();
-            $('#' + sectionId).show();
+        // Дані про моделі з файлу Авто.xlsx
+        const models = [
+            { name: "MERCEDES BENZ SPRINTER 416CDI", year: 2011, fuelType: "ДП", oilConsumption: 2 },
+            { name: "КРАЗ 260", year: 1992, fuelType: "ДП", oilConsumption: 3 },
+            { name: "MERCEDES BENZ  SPRINTER 316 CDI", year: 2018, fuelType: "ДП", oilConsumption: 1.5 },
+            { name: "MAN TGL 12.220", year: 2013, fuelType: "ДП", oilConsumption: 2.5 },
+            { name: "MERCEDES BENZ VITO 111", year: 2007, fuelType: "ДП", oilConsumption: 1.8 },
+            { name: "VOLKSWAGEN TRANSPORTER", year: 2014, fuelType: "ДП", oilConsumption: 1.7 },
+            { name: "ГАЗ 331049-КТП Валдай", year: 2008, fuelType: "ДП", oilConsumption: 2.8 },
+            { name: "БАЗ Т713.12 ТАТА", year: 2012, fuelType: "ДП", oilConsumption: 2.2 },
+            { name: "RENAULT PREMIUM 420", year: 2004, fuelType: "ДП", oilConsumption: 3.5 },
+            { name: "DAF XF 95.380", year: 2003, fuelType: "ДП", oilConsumption: 3.5 },
+            { name: "MAN TGА", year: 2008, fuelType: "ДП", oilConsumption: 3.4 },
+            { name: "«Локер» LC0712 на базі автомобіля Mitsubishi L200", year: 2024, fuelType: "ДП", oilConsumption: 1.4 },
+            { name: "ТАТА 613 5675", year: 2008, fuelType: "ДП", oilConsumption: 2.6 },
+            { name: "HYUNDAI Terracan", year: 2002, fuelType: "ДП", oilConsumption: 1.9 },
+            { name: "Mitsubishi PICK-UP L200", year: 2006, fuelType: "ДП", oilConsumption: 2.0 },
+            { name: "ЗИЛ 131 МРС-АТ", year: 1990, fuelType: "А-80", oilConsumption: 4.0 },
+            { name: "УРАЛ 4320 КЕТ-Л", year: 1984, fuelType: "ДП", oilConsumption: 3.8 },
+            { name: "NISAN Navaro", year: 2005, fuelType: "ДП", oilConsumption: 1.6 },
+            { name: "NISAN X-TRAIL", year: 2008, fuelType: "ДП", oilConsumption: 1.5 },
+            { name: "ГАЗ 5312", year: 1992, fuelType: "А-80", oilConsumption: 3.2 },
+            { name: "УАЗ  3909", year: 2004, fuelType: "А-80", oilConsumption: 2.5 },
+            { name: "ЗІЛ 131 ТРМ-80Д", year: 1970, fuelType: "ДП", oilConsumption: 3.9 },
+            { name: "MAN HX 44.685", year: 2018, fuelType: "ДП", oilConsumption: 4.5 },
+            { name: "Volkswagen Caravelle", year: 2000, fuelType: "ДП", oilConsumption: 2.0 },
+            { name: "МАЗ 543 КШТ-80", year: 2002, fuelType: "ДП", oilConsumption: 5.0 },
+            { name: "MAN TGX 33.480 6х4 BL SA", year: 2023, fuelType: "ДП", oilConsumption: 3.7 },
+            { name: "КАМАЗ 5320", year: 1988, fuelType: "ДП", oilConsumption: 4.2 },
+            { name: "Mitsubishi L200", year: 2024, fuelType: "ДП", oilConsumption: 1.3 },
+            { name: "FAUN HZ4045/45", year: 1985, fuelType: "ДП", oilConsumption: 5.5 }
+        ];
+
+        // Оновлення нормативної витрати мастила при виборі моделі
+        function updateNorm() {
+            const selectedModelName = document.getElementById("model").value;
+            const selectedModel = models.find(model => model.name === selectedModelName);
+            document.getElementById("norm").value = selectedModel ? selectedModel.oilConsumption : 0;
         }
 
-        // Функція для розрахунку витрати палива
-        function calculateFuel() {
-            const a = parseFloat(document.getElementById("a").value) || 0;
-            const b = parseFloat(document.getElementById("b").value) || 0;
-            const v = parseFloat(document.getElementById("v").value) || 0;
-            const g = parseFloat(document.getElementById("g").value) || 0;
-
-            // Округлення 0.5 і більше до 1, менше до 0
-            function roundHalfUp(value) {
-                return Math.round(value);
+        // Розрахунок витрати мастила
+        function calculateOil() {
+            const selectedModelName = document.getElementById("model").value;
+            const selectedModel = models.find(model => model.name === selectedModelName);
+            const distance = parseFloat(document.getElementById("distance").value) || 0;
+            
+            if (!selectedModel) {
+                alert("Будь ласка, оберіть модель автомобіля.");
+                return;
             }
 
-            const fuelWithLoad = roundHalfUp((a / 100) * b * 1.2);
-            const fuelWithoutLoad = roundHalfUp((a / 100) * v);
-            const fuelByHours = roundHalfUp(g * 25 * (a / 100));
-            const totalFuel = fuelWithLoad + fuelWithoutLoad + fuelByHours;
+            const norm = selectedModel.oilConsumption;
+            const year = selectedModel.year;
+            const fuelType = selectedModel.fuelType;
 
-            const formulaHTML = `
-                <div class="fraction">
-                    <span class="top">${b} × ${a} × 1.2</span>
-                    <span class="bottom">100</span>
-                </div> = ${fuelWithLoad} л
-                <div class="fraction">
-                    <span class="top">${v} × ${a}</span>
-                    <span class="bottom">100</span>
-                </div> = ${fuelWithoutLoad} л
-                <div class="fraction">
-                    <span class="top">${g} × 25 × ${a}</span>
-                    <span class="bottom">100</span>
-                </div> = ${fuelByHours} л
-                <div><strong>Всього:</strong> ${fuelWithLoad} л + ${fuelWithoutLoad} л + ${fuelByHours} л = <strong>${totalFuel}</strong> л</div>
-            `;
+            // Формула розрахунку витрати мастила (л/1000 км)
+            let totalOil = (norm / 1000) * distance;
 
+            // Додаткові коригування на основі року випуску
+            if (year < 2000) {
+                totalOil *= 1.1; // Додаємо 10% для старих авто
+            }
+
+            // Виведення результату
             const resultDiv = document.getElementById("result");
-            const formulaDiv = document.getElementById("formula");
-
             resultDiv.style.display = "block";
-            resultDiv.innerHTML = `Обсяг списаного палива: <span class="highlighted-result">${totalFuel}</span> л.`;
-
-            formulaDiv.style.display = "block";
-            formulaDiv.innerHTML = formulaHTML;
+            resultDiv.innerHTML = `Витрата мастила для ${selectedModelName} (${year}, ${fuelType}): <strong>${totalOil.toFixed(2)}</strong> л.`;
         }
     </script>
 </body>
